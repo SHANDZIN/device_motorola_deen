@@ -372,7 +372,7 @@ PRODUCT_PACKAGES += \
 # Recovery
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/root/init.recovery.qcom.rc:root/init.recovery.qcom.rc \
-    $(LOCAL_PATH)/rootdir/etc/init.mmi.usb.rc:root/init.recovery.qcom.usb.rc
+    $(LOCAL_PATH)/rootdir/root/init.recovery.qcom.usb.rc:root/init.recovery.qcom.usb.rc
 
 TARGET_RECOVERY_DENSITY := xhdpi
 
