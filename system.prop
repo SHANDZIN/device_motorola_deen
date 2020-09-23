@@ -9,6 +9,9 @@ dalvik.vm.image-dex2oat-filter=quicken
 # Audio
 use.voice.path.for.pcm.voip=false
 
+# BPF
+ro.kernel.ebpf.supported=true
+
 # Camera
 media.camera.ts.monotonic=1
 persist.camera.HAL3.enabled=1
