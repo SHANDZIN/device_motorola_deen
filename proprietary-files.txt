@@ -541,14 +541,18 @@ vendor/lib64/vendor.egistec.hardware.fingerprint@2.0.so
 vendor/lib64/libets_fp_et5.so
 vendor/lib64/libets_teeclient.so
 
-# FM
-system/lib/fm_helium.so
-system/lib/libfm-hci.so
-system/lib64/fm_helium.so
-system/lib64/libfm-hci.so
-vendor/bin/fm_qsoc_patches
-vendor/lib/hw/vendor.qti.hardware.fm@1.0-impl.so
-vendor/lib64/hw/vendor.qti.hardware.fm@1.0-impl.so
+# FM - from deen_sprout QPKS30.54-22-27
+system/lib/fm_helium.so|30a45c8519402c8bd750a006b7fd79600f71af9b
+system/lib/libfm-hci.so|e48900e000ab0d3af173f43fcb0b6a4a756543ed
+system/lib64/fm_helium.so|b796c4d16f4706277cffca32212fb7d9f342f9f8
+system/lib64/libfm-hci.so|0b944b37744770498132b98753758ac946016691
+-product/lib/vendor.qti.hardware.fm@1.0.so|875d9c252d707ecbe9e94036537b737fbc2187e3
+-product/lib64/vendor.qti.hardware.fm@1.0.so|b7358cd2a52e6e0798efa01f9595f8b8e8f7b152
+vendor/bin/fm_qsoc_patches|4e0d9e7feb7b6ea693be721650406a4c825e4a58
+vendor/lib/hw/vendor.qti.hardware.fm@1.0-impl.so|fb52f51872e2902a9127628fa337552324601ccc
+vendor/lib/vendor.qti.hardware.fm@1.0.so|875d9c252d707ecbe9e94036537b737fbc2187e3
+vendor/lib64/hw/vendor.qti.hardware.fm@1.0-impl.so|08fe082d3d05cf8c68269a090224f2efcf84e45a
+vendor/lib64/vendor.qti.hardware.fm@1.0.so|b7358cd2a52e6e0798efa01f9595f8b8e8f7b152
 
 # Gatekeeper
 vendor/bin/hw/android.hardware.gatekeeper@1.0-service-qti

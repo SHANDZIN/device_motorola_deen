@@ -76,8 +76,7 @@ PRODUCT_PACKAGES += \
     audio.bluetooth.default \
     android.hardware.bluetooth.audio@2.0-impl:32 \
     libbt-vendor \
-    vendor.qti.hardware.btconfigstore@1.0.vendor \
-    vendor.qti.hardware.fm@1.0.vendor
+    vendor.qti.hardware.btconfigstore@1.0.vendor
 
 # Boot animation
 TARGET_BOOT_ANIMATION_RES := 1080
