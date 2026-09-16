@@ -139,6 +139,7 @@ BOARD_KERNEL_CMDLINE += \
     androidboot.bootdevice=7824900.sdhci \
     androidboot.hardware=qcom \
     androidboot.usbconfigfs=true \
+    androidboot.selinux=permissive \
     androidboot.veritymode=eio \
     ehci-hcd.park=3 \
     loop.max_part=7 \
