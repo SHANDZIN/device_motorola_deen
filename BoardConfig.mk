@@ -140,10 +140,10 @@ BOARD_KERNEL_CMDLINE += \
     androidboot.hardware=qcom \
     androidboot.usbconfigfs=true \
     androidboot.selinux=permissive \
-    androidboot.veritymode=eio \
     ehci-hcd.park=3 \
     loop.max_part=7 \
-    lpm_levels.sleep_disabled=1
+    lpm_levels.sleep_disabled=1 \
+    loglevel=3
 
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 BOARD_KERNEL_OFFSET := 0x00008000
@@ -151,8 +151,14 @@ BOARD_KERNEL_PAGESIZE :=  2048
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_CONFIG := deen_defconfig
-TARGET_KERNEL_SOURCE := kernel/motorola/deen
+TARGET_KERNEL_SOURCE := kernel/motorola/msm8953
 TARGET_KERNEL_VERSION := 4.9
+
+TARGET_KERNEL_CLANG_COMPILE := true
+TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts/clang/host/linux-x86/clang-r522817
+
+TARGET_KERNEL_ADDITIONAL_FLAGS := \
+    HOSTCFLAGS="-fuse-ld=lld -Wno-unused-command-line-argument"
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
