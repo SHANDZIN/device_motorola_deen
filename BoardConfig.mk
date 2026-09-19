@@ -134,16 +134,22 @@ TARGET_RECOVERY_DEVICE_MODULES := libinit_deen
 # Kernel
 BOARD_BOOT_HEADER_VERSION := 1
 BOARD_KERNEL_BASE := 0x80000000
+BOARD_KERNEL_CMDLINE :=  \
+    androidboot.hardware=qcom \
+    msm_rtb.filter=0x237 \
+    ehci-hcd.park=3 \
+    lpm_levels.sleep_disabled=1 \
+    loop.max_part=7
 
 BOARD_KERNEL_CMDLINE += \
     androidboot.bootdevice=7824900.sdhci \
-    androidboot.hardware=qcom \
+    androidboot.console=ttyMSM0 \
     androidboot.usbconfigfs=true \
     androidboot.selinux=permissive \
-    ehci-hcd.park=3 \
-    loop.max_part=7 \
-    lpm_levels.sleep_disabled=1 \
-    loglevel=3
+    console=ttyMSM0,115200,n8 \
+    earlycon=msm_serial_dm,0x78af000 \
+    printk.devkmsg=on \
+    loglevel=8
 
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 BOARD_KERNEL_OFFSET := 0x00008000
