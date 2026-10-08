@@ -5,7 +5,7 @@
 #
 
 DEVICE_PATH := device/motorola/deen
-KERNEL_PATH := device/motorola/deen-kernel
+
 BOARD_VENDOR := motorola
 
 # A/B updater
@@ -144,8 +144,10 @@ BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_KERNEL_PAGESIZE :=  2048
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
-TARGET_NO_KERNEL_OVERRIDE := true
-TARGET_KERNEL_SOURCE := $(KERNEL_PATH)/kernel-headers
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_CONFIG := vendor/deen_defconfig
+TARGET_KERNEL_SOURCE := kernel/motorola/msm8953
+TARGET_KERNEL_VERSION := 4.19
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
