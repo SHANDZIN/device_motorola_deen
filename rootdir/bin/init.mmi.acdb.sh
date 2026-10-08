@@ -1,7 +1,6 @@
 #!/vendor/bin/sh
-carrier=$(getprop ro.carrier)
+carrier=$(getprop ro.vendor.carrier)
 [ -z "$carrier" ] && carrier=$(getprop ro.boot.carrier)
-[ -z "$carrier" ] && carrier=$(getprop ro.vendor.carrier)
 carrier=$(echo "$carrier" | tr '[:upper:]' '[:lower:]')
 
 case "$carrier" in
