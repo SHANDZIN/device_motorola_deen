@@ -84,19 +84,20 @@ vendor/firmware/tfa98xx.cnt
 # Audio ril blob
 vendor/lib64/libsensorndkbridge.so
 
-# Bluetooth
-vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti
-vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc
-vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so
-vendor/lib64/libbt-hidlclient.so
-vendor/lib64/libbtnv.so
+# Bluetooth & FM - LA.UM.9.6.3.r1-06200-89xx.0
+vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti|7c91cd392b6b1b77e2b05eecdd1d124b9c1dd219
+vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc|f4ee3b2da2b08647447869ade86ec63f7340accc
+vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so|4efb742576071e0d645cf594f274479e9a94bf17
+vendor/lib64/hw/vendor.qti.hardware.bluetooth_sar@1.1-impl.so|0af6e391d1ce99bef3a17b122c8c8222cff7b0f4
+vendor/lib64/hw/vendor.qti.hardware.btconfigstore@2.0-impl.so|a510aa4f1efe9177b5a8696048289f53ae90eea4
+vendor/lib64/hw/vendor.qti.hardware.fm@1.0-impl.so|3526e03394a745b496d531fd8687ba4e550ab3ce
+vendor/lib64/libbtnv.so|c9c699a309ef51f44b1100e3a9c973006d3886b4
+vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.0.so|3e52b47a48139bcd7220dcfa33ce0d9177ddd45e
+vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.1.so|badee859969d3ad75b90be31f4d75d22057f3af5
+vendor/lib64/vendor.qti.hardware.fm@1.0.so|677ad64a50bef7e31738469aa72b94d13444a4ca
 
 # Bluetooth (shared dependencies)
-vendor/lib64/com.qualcomm.qti.ant@1.0.so
-
-# Bluetooth Audio
-vendor/lib64/hw/vendor.qti.hardware.bluetooth_sar@1.0-impl.so
-vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.0.so
+vendor/lib64/libsoc_helper.so|3a7dc01758e6d41ca7fa64d61c3f5d5830debf28
 
 # Camera
 vendor/lib/hw/camera.msm8953.so
@@ -548,7 +549,6 @@ system/lib64/fm_helium.so
 system/lib64/libfm-hci.so
 vendor/bin/fm_qsoc_patches
 vendor/lib/hw/vendor.qti.hardware.fm@1.0-impl.so
-vendor/lib64/hw/vendor.qti.hardware.fm@1.0-impl.so
 
 # Gatekeeper
 vendor/bin/hw/android.hardware.gatekeeper@1.0-service-qti

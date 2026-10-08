@@ -38,6 +38,14 @@ vendor.audio.use.sw.ape.decoder=true
 vendor.audio_hal.period_size=240
 vendor.voice.path.for.pcm.voip=false
 
+# Bluetooth
+persist.vendor.bluetooth.modem_nv_support=true
+persist.vendor.qcom.bluetooth.enable.splita2dp=false
+persist.vendor.qcom.bluetooth.soc=pronto
+ro.vendor.bluetooth.wipower=false
+vendor.audio.feature.a2dp_offload.enable=false
+vendor.qcom.bluetooth.soc=pronto
+
 # Camera
 vendor.camera.aux.packageblacklist=com.discord
 vendor.camera.aux.packagelist=,com.android.camera2,com.google.android.GoogleCamera.cameralite
