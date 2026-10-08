@@ -79,3 +79,8 @@ genfscon sysfs /devices/virtual/misc/msm_multi_aac/wakeup u:object_r:sysfs_wakeu
 genfscon sysfs /devices/virtual/misc/msm_qcelp/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/virtual/misc/msm_wma/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/virtual/misc/msm_wmapro/wakeup u:object_r:sysfs_wakeup:s0
+
+genfscon sysfs /devices/platform/soc/1de0000.qcom,venus/subsys/name u:object_r:sysfs_ssr:s0
+genfscon sysfs /devices/platform/soc/1de0000.qcom,venus/subsys4/name u:object_r:sysfs_ssr:s0
+genfscon sysfs /devices/platform/soc/4080000.qcom,mss/subsys/name u:object_r:sysfs_ssr:s0
+genfscon sysfs /devices/platform/soc/4080000.qcom,mss/subsys0/name u:object_r:sysfs_ssr:s0

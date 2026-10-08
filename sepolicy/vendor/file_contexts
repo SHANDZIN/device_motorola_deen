@@ -119,3 +119,5 @@
 
 # Sensors
 /persist/sensors(/.*)?                          u:object_r:sensors_persist_file:s0
+
+/dev/mmcblk0rpmb                                             u:object_r:rpmb_device:s0
