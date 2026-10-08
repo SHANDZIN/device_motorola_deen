@@ -25,14 +25,6 @@ LOCAL_VENDOR_MODULE := true
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
-LOCAL_SRC_FILES := strdup16to8.cpp
-LOCAL_SHARED_LIBRARIES := libcutils
-LOCAL_MODULE := libcutils_shim
-LOCAL_MODULE_TAGS := optional
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_SHARED_LIBRARY)
-
-include $(CLEAR_VARS)
 LOCAL_SHARED_LIBRARIES := libgui_vendor
 LOCAL_MODULE := libwui
 LOCAL_MODULE_TAGS := optional
