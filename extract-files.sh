@@ -54,6 +54,9 @@ fi
 
 function blob_fixup() {
     case "${1}" in
+        vendor/etc/init/dpmQmiMgr.rc)
+            sed -i '/^[[:space:]]*interface /d' "${2}"
+            ;;
         # Load libprocessgroup
         vendor/lib/hw/audio.primary.msm8953.so)
             "${PATCHELF}" --replace-needed libcutils.so libprocessgroup.so "${2}"
@@ -70,12 +73,6 @@ function blob_fixup() {
         product/etc/permissions/vendor.qti.hardware.data.connection-V1.0-java.xml | product/etc/permissions/vendor.qti.hardware.data.connection-V1.1-java.xml)
             sed -i 's/xml version="2.0"/xml version="1.0"/' "${2}"
             ;;
-        # Missing symbols for ril
-        vendor/lib64/libril-qc-hal-qmi.so)
-            for  LIBCUTILS_SHIM in $(grep -L "libcutils_shim.so" "${2}"); do
-                "${PATCHELF}" --add-needed "libcutils_shim.so" "$LIBCUTILS_SHIM"
-            done
-	    ;;
         # memset shim
         vendor/bin/charge_only_mode)
             for  LIBMEMSET_SHIM in $(grep -L "libmemset_shim.so" "${2}"); do

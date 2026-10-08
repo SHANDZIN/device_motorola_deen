@@ -234,7 +234,7 @@
     <bool name="config_carrier_wfc_ims_available">true</bool>
 
     <!-- Flag specifying whether VT is available on device -->
-    <bool name="config_device_vt_available">true</bool>
+    <bool name="config_device_vt_available">false</bool>
 
     <!-- If this is true, the screen will come on when you unplug usb/power/whatever. -->
     <bool name="config_unplugTurnsOnScreen">true</bool>
@@ -289,15 +289,16 @@
          If no value is found for the rat-name in use, the system default will be applied.
     -->
     <string-array name="config_mobile_tcp_buffers">
-        <item>umts:131072,262144,1452032,4096,16384,399360</item>
-        <item>hspa:131072,262144,1452032,4096,16384,399360</item>
-        <item>hsupa:131072,262144,1452032,4096,16384,399360</item>
-        <item>hsdpa:131072,262144,1452032,4096,16384,399360</item>
-        <item>hspap:131072,262144,1452032,4096,16384,399360</item>
-        <item>edge:16384,32768,131072,4096,16384,65536</item>
-        <item>gprs:4096,8192,24576,4096,8192,24576</item>
-        <item>evdo:131072,262144,1048576,4096,16384,524288</item>
-        <item>lte:524288,1048576,8388608,262144,524288,4194304</item>
+        <item>lte:2097152,4194304,8388608,262144,524288,1048576</item>
+        <item>lte_ca:4096,6291456,12582912,4096,1048576,2097152</item>
+        <item>umts:4094,87380,1220608,4096,16384,1220608</item>
+        <item>hspa:4094,87380,1220608,4096,16384,1220608</item>
+        <item>hsupa:4094,87380,1220608,4096,16384,1220608</item>
+        <item>hsdpa:4094,87380,1220608,4096,16384,1220608</item>
+        <item>hspap:4094,87380,1220608,4096,16384,1220608</item>
+        <item>edge:4093,26280,35040,4096,16384,35040</item>
+        <item>gprs:4092,8760,11680,4096,8760,11680</item>
+        <item>evdo:4094,87380,524288,4096,16384,262144</item>
     </string-array>
 
     <!-- This string array should be overridden by the device to present a list of radio
@@ -469,4 +470,14 @@
 
     <!-- Should we filter any display modes which are unampped? -->
     <bool name="config_filterDisplayModes">true</bool>
+
+    <integer name="config_num_physical_slots">2</integer>
+
+    <bool name="config_feature_iwlan_enabled">true</bool>
+
+    <string name="config_wlan_data_service_package">vendor.qti.iwlan</string>
+
+    <string name="config_wlan_network_service_package">vendor.qti.iwlan</string>
+
+    <string name="config_qualified_networks_service_package">vendor.qti.iwlan</string>
 </resources>

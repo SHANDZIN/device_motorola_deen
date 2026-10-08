@@ -23,7 +23,6 @@ persist.vendor.camera.eis.enable=1
 persist.vendor.camera.gyro.disable=0
 persist.vendor.camera.isp.clock.optmz=0
 persist.vendor.camera.stats.test=5
-persist.vendor.qti.telephony.vt_cam_interface=2
 vidc.enc.dcvs.extra-buff-count=2
 
 # Charger
@@ -55,12 +54,18 @@ media.aac_51_output_enabled=true
 av.debug.disable.pers.cache=1
 media.settings.xml=/vendor/etc/media_profiles_vendor.xml
 
+# Mobile Data
+ro.com.android.mobiledata=false
+
+# Hardware
+ro.hw_timeout_multiplier=3
+
 # Radio
-DEVICE_PROVISIONED=1
-persist.vendor.cne.feature=1
-persist.vendor.dpm.feature=0
-ril.subscription.types=NV,RUIM
-telephony.lteOnCdmaDevice=1
+ril.subscription.types=RUIM
+persist.rcs.supported=1
+persist.dbg.volte_avail_ovr=1
+persist.dbg.vt_avail_ovr=0
+persist.dbg.wfc_avail_ovr=1
 
 # Time
 persist.timed.enable=true

@@ -395,33 +395,7 @@ case "$target" in
         esac
         ;;
     "msm8953")
-        if [ -f /vendor/firmware_mnt/verinfo/ver_info.txt ]; then
-            echo "file"
-            modem=`cat /vendor/firmware_mnt/verinfo/ver_info.txt |
-                        sed -n 's/^[^:]*modem[^:]*:[[:blank:]]*//p' |
-                        sed 's/.*TA.\(.*\)/\1/g' | cut -d \- -f 1`
-            # In MSM8953 if meta version is greater than 2.1, need
-            # to use the new vendor-ril which supports L+L feature
-            # otherwise use the existing old one.
-            zygote=`getprop ro.vendor.zygote`
-            case "$zygote" in
-            ""zygote64_32"")
-                if [ "$modem" \< "3.0" ]; then
-                    setprop vendor.rild.libpath "/vendor/lib64/libril-qc-qmi-1.so"
-                else
-                    setprop vendor.rild.libpath "/vendor/lib64/libril-qc-hal-qmi.so"
-                fi
-                ;;
-            "zygote32")
-                if [ "$modem" \< "3.0" ]; then
-                    setprop vendor.rild.libpath "/vendor/lib/libril-qc-qmi-1.so"
-                else
-                    setprop vendor.rild.libpath "/vendor/lib/libril-qc-hal-qmi.so"
-                fi
-                ;;
-            esac
-        fi
-        cap_ver = 1
+        cap_ver=1
                 if [ -e "/sys/devices/platform/soc/1d00000.qcom,vidc/capability_version" ]; then
                     cap_ver=`cat /sys/devices/platform/soc/1d00000.qcom,vidc/capability_version` 2> /dev/null
                 else
