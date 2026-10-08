@@ -87,6 +87,15 @@ function blob_fixup() {
            "${PATCHELF}" --replace-needed "libprotobuf-cpp-lite.so" "libprotobuf-cpp-lite-v29.so" "${2}"
            ;;
     esac
+
+    local needed dependency
+    if needed=$("${PATCHELF}" --print-needed "${2}" 2>/dev/null); then
+        for dependency in libhwbinder.so libhidltransport.so; do
+            if grep -Fxq "${dependency}" <<< "${needed}"; then
+                "${PATCHELF}" --remove-needed "${dependency}" "${2}"
+            fi
+        done
+    fi
 }
 
 # Initialize the helper
@@ -95,9 +104,3 @@ setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}" false "${CLEAN_VENDOR}"
 extract "${MY_DIR}/proprietary-files.txt" "${SRC}" "${KANG}" --section "${SECTION}"
 
 "${MY_DIR}/setup-makefiles.sh"
-
-# Remove libhwbinder - libhidltransport depedencies
-for i in $(grep -rn 'libhidltransport.so\|libhwbinder.so' ../../../vendor/motorola/"${DEVICE}"/proprietary | awk '{print $3}'); do
-	patchelf --remove-needed "libhwbinder.so" "$i"
-	patchelf --remove-needed "libhidltransport.so" "$i"
-done
