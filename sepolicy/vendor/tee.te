@@ -3,3 +3,6 @@ typeattribute tee data_between_core_and_vendor_violators;
 allow tee fingerprintd_data_file:dir { search read write open add_name remove_name };
 allow tee fingerprintd_data_file:file { create read write open };
 allow tee unlabeled:dir search;
+
+allowxperm tee rpmb_device:chr_file ioctl { MMC_IOC_CMD 0xb301 };
+allow tee rpmb_device:chr_file ioctl;
