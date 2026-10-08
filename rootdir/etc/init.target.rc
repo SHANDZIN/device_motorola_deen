@@ -120,7 +120,7 @@ service qfp-daemon /system/vendor/bin/qfp-daemon
    user system
    group system drmrpc
 
-# Allow usb charging to be disabled peristently
+# Allow USB charging to be disabled persistently
 on property:persist.usb.chgdisabled=1
     write /sys/class/power_supply/battery/charging_enabled 0
 
@@ -200,15 +200,6 @@ on boot
 
 # access permission for wlan
     chown system system /mnt/vendor/persist/WCNSS_qcom_wlan_nv.bin
-
-#USB controller configuration
-    write /sys/module/g_android/parameters/mtp_tx_req_len 131072
-    write /sys/module/g_android/parameters/mtp_rx_req_len 131072
-    write /sys/class/android_usb/android0/f_rndis_qc/rndis_transports BAM2BAM_IPA
-    setprop vendor.usb.rndis.func.name "rndis_bam"
-    setprop vendor.usb.rmnet.func.name "rmnet_bam"
-    setprop vendor.usb.rmnet.inst.name "rmnet"
-    setprop vendor.usb.dpl.inst.name "dpl"
 
 service wcnss-service /system/vendor/bin/wcnss_service
     class late_start

@@ -378,9 +378,6 @@
         <item>"qcom:ptp:diag,serial_cdev,rmnet:ptp"</item>
         <item>"qcom:ptp,adb:diag,serial_cdev,rmnet,adb:ptp,adb"</item>
         <item>"qcom:adb:diag,serial_cdev,rmnet,adb:adb"</item>
-        <item>"mot-factory:mtp:usbnet:mtp"</item>
-        <item>"mot-factory:mtp,adb:usbnet,adb:mtp,adb"</item>
-        <item>"mot-factory:adb:usbnet,adb:adb"</item>
     </string-array>
 
     <!-- True if the device supports Sustained Performance Mode-->
