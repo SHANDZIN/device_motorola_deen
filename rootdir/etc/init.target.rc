@@ -113,12 +113,6 @@ on init
     write /dev/stune/background/schedtune.colocate 0
     write /dev/stune/foreground/schedtune.colocate 0
     write /dev/stune/top-app/schedtune.colocate 1
-    write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
-
-service qfp-daemon /system/vendor/bin/qfp-daemon
-   class late_start
-   user system
-   group system drmrpc
 
 # Allow USB charging to be disabled persistently
 on property:persist.usb.chgdisabled=1
@@ -134,21 +128,6 @@ on property:hw.fm.init=0
 on property:hw.fm.init=1
     write /sys/module/radio_iris_transport/parameters/fmsmd_set 1
 
-service qrngd /system/bin/qrngd -f
-   class main
-   user root
-   group root
-
-service qrngp /system/bin/qrngp -f
-   class main
-   user root
-   group root
-   oneshot
-   disabled
-
-on property:sys.boot_completed=1
-   start qrngp
-
 service vendor.qseecomd /vendor/bin/qseecomd
    class core
    user root
@@ -163,11 +142,6 @@ service thermal-engine /system/vendor/bin/thermal-engine
     socket thermal-recv-passive-client stream 0666 system system
     socket thermal-send-rule stream 0660 system system
     group root system
-
-service audiod /system/vendor/bin/audiod
-   class late_start
-   user system
-   group system
 
 on boot
 # access permission for secure touch
@@ -225,18 +199,6 @@ on property:init.svc.zygote=running
 on property:init.svc.zygote=restarting
     stop ppd
 
-service dts_configurator /system/vendor/bin/dts_configurator
-    class late_start
-    user system
-    group media audio
-    oneshot
-
-service dtseagleservice /system/vendor/bin/dts_eagle_service
-    class late_start
-    user system
-    group audio media
-    disabled
-
 service adsprpcd /system/vendor/bin/adsprpcd
     class main
     user media
@@ -246,9 +208,6 @@ service vendor.hvdcp_opti /system/vendor/bin/hvdcp_opti
    class main
    user root
    group system wakelock
-
-on property:init.svc.dts_configurator=stopped
-    start dtseagleservice
 
 service vendor.per_mgr /system/vendor/bin/pm-service
     class core
@@ -273,15 +232,6 @@ service energy-awareness /system/vendor/bin/energy-awareness
     group system
     oneshot
 
-service mdtpd /system/vendor/bin/mdtpd
-    class late_start
-    user root
-    group system radio drmrpc
-
-on boot
-    write /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/fw_name PR1702898-s3528t_00260005_00380008.img
-    write /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/update_fw 1
-
 service adjust_acdb_path /vendor/bin/init.mmi.acdb.sh
     class core
     user root
@@ -291,16 +241,3 @@ service adjust_acdb_path /vendor/bin/init.mmi.acdb.sh
 
 on early-boot
    start adjust_acdb_path
-
-on property:sys.boot_completed=1
- # write caching
-    # Tell the kernel to use up to 99% of the RAM as cache for writes
-    # and instruct kernel to use up to 50% of RAM before slowing down
-    # the process that's writing.
-    write /proc/sys/vm/dirty_ratio 99
-    write /proc/sys/vm/dirty_background_ratio 50
-
-    # Tell that 10 minutes write delay is ok to even start writing
-    # stuff on the disk (ten minutes = 60000; 1 hour 360000).
-    write /proc/sys/vm/dirty_expire_centisecs 60000
-    write /proc/sys/vm/dirty_writeback_centisecs 60000
