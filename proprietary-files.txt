@@ -733,7 +733,7 @@ vendor/etc/perf/commonresourceconfigs.xml|d9fc3b49481536d6c7a25eb13f9f1d52d3ee8f
 vendor/etc/perf/perfboostsconfig.xml|1c120821b2fe9b3ebf9d00b7bc8c0a374c2918d2
 vendor/etc/perf/perfconfigstore.xml|207ff980c296f4935928dd2f06e085b33bf59755
 vendor/etc/perf/targetconfig.xml|aa20c25397df1455206965737f82d44d44430e45
-vendor/etc/perf/targetresourceconfigs.xml|d9f9815764725df55e748bf4af4829e609dac853
+vendor/etc/perf/targetresourceconfigs.xml|d9f9815764725df55e748bf4af4829e609dac853|a77229f0a73d4c7d5caa2683b5e1816917ba647f
 
 # Perf (IOP) - from LA.UM.8.6.2.r1-08600-89xx.0
 system/lib/libqti-iopd-client_system.so:system_ext/lib/libqti-iopd-client_system.so|1a36a807a75dde4bcfed713924aca675f5c11558
