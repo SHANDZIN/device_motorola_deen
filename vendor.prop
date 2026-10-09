@@ -48,6 +48,7 @@ vendor.audio.feature.a2dp_offload.enable=false
 vendor.qcom.bluetooth.soc=pronto
 
 # Camera
+persist.vendor.camera.HAL3.enabled=1
 vendor.camera.aux.packageblacklist=com.discord
 vendor.camera.aux.packagelist=,com.android.camera2,com.google.android.GoogleCamera.cameralite
 vendor.camera.aux.packagelist2=com.android.camera,com.android.systemui,com.huaqin.cameraautotest,com.huaqin.runtime
@@ -59,7 +60,6 @@ vendor.camera.lowpower.record.enable=1
 debug.media.codec2=2
 
 # Color Mode
-debug.sf.enable_gl_backpressure=1
 debug.sf.hw=1
 debug.sf.latch_unsignaled=0
 dev.pm.dyn_samplingrate=1
