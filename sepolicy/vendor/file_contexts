@@ -80,6 +80,9 @@
 /sys/devices/virtual/input(/.*)?                              u:object_r:sysfs_input:s0
 /sys/devices/virtual/input/input[0-9]+/wakeup[0-9]+(/.*)?      u:object_r:sysfs_wakeup:s0
 
+/sys/devices/platform/soc/200f000\.qcom,spmi/spmi-0/spmi0-00/200f000\.qcom,spmi:qcom,pm8953@0:vadc@3100/iio:device[0-9]+/name u:object_r:sysfs_iio_name:s0
+/sys/devices/platform/soc/200f000\.qcom,spmi/spmi-0/spmi0-02/200f000\.qcom,spmi:qcom,pmi8950@2:vadc@3100/iio:device[0-9]+/name u:object_r:sysfs_iio_name:s0
+
 /(vendor|system/vendor)/bin/wlan_carrier_bin\.sh            u:object_r:init_wifi_exec:s0
 
 # Charger

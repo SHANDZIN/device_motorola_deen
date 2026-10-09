@@ -1,0 +1,2 @@
+gsm.operator.iso-country  u:object_r:exported_radio_prop:s0 exact string
+gsm.operator.numeric      u:object_r:exported_radio_prop:s0 exact string
