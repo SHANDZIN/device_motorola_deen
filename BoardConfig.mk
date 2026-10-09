@@ -191,7 +191,6 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
-CUSTOM_APNS_FILE := $(DEVICE_PATH)/configs/sprint_apns.xml
 
 # Root
 BOARD_ROOT_EXTRA_FOLDERS := persist
