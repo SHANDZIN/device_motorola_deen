@@ -54,6 +54,9 @@ fi
 
 function blob_fixup() {
     case "${1}" in
+        vendor/etc/perf/targetresourceconfigs.xml)
+            sed -i '/MajorValue="0x3".*MinorValue="0x[BD]".*Kernel="4.9"/s/Kernel="4.9"/Kernel="4.19"/' "${2}"
+            ;;
         vendor/etc/init/dpmQmiMgr.rc)
             sed -i '/^[[:space:]]*interface /d' "${2}"
             ;;
