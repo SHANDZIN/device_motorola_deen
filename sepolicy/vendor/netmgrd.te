@@ -3,5 +3,8 @@ allow netmgrd diag_device:chr_file { open read write ioctl };
 typeattribute netmgrd vendor_executes_system_violators;
 
 set_prop(netmgrd, vendor_xlat_prop)
+set_prop(netmgrd, vendor_data_ko_prop)
+set_prop(netmgrd, vendor_data_shsusr_prop)
+set_prop(netmgrd, vendor_data_qmipriod_prop)
 
 allow netmgrd system_file:file { execute execute_no_trans getattr open read };

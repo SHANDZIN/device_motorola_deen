@@ -34,6 +34,7 @@ genfscon sysfs /devices/soc/soc:gpio_keys/input/input7    u:object_r:sysfs_input
 genfscon proc /sys/vm/dirty_writeback_centisecs                       u:object_r:proc_dirty:s0
 
 # Wakeup statistics
+genfscon sysfs /devices/platform/soc/0.et320/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/1b0c000.qcom,cci/1b0c000.qcom,cci:qcom,camera@0/video4linux/video1/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/1b0c000.qcom,cci/1b0c000.qcom,cci:qcom,camera@1/video4linux/video2/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/1b0c000.qcom,cci/1b0c000.qcom,cci:qcom,camera@2/video4linux/video3/wakeup u:object_r:sysfs_wakeup:s0
@@ -53,6 +54,7 @@ genfscon sysfs /devices/platform/soc/4080000.qcom,mss/wakeup u:object_r:sysfs_wa
 genfscon sysfs /devices/platform/soc/7000000.ssusb/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/78b5000.i2c/i2c-1/1-0022/power_supply/usbc/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/78b5000.i2c/i2c-1/1-0022/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/78b5000.i2c/i2c-1/1-0022/dual_role_usb/otg_default/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/7900000.qcom,ipa/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/7af5000.i2c/i2c-5/5-0028/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/a000000.qcom,wcnss-wlan/wakeup u:object_r:sysfs_wakeup:s0

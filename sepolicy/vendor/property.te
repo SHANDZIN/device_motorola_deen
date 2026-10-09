@@ -8,3 +8,6 @@ type vendor_wifi_prop, property_type;
 
 # perf
 type vendor_perf_prop, property_type;
+
+vendor_restricted_prop(vendor_data_shsusr_prop)
+vendor_restricted_prop(vendor_data_qmipriod_prop)
