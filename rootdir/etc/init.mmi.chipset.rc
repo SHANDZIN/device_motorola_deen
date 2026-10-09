@@ -40,7 +40,3 @@ on moto-charger
     start vendor.charge_only_mode
     start vendor.batt_health
     start vendor.thermal-com
-
-# Set hub drive strength to +5%
-on property:ro.bootmode=normal
-   write /sys/module/usb3813_hub/parameters/boost_val 3
