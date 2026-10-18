@@ -100,7 +100,6 @@ vendor/lib64/vendor.qti.hardware.fm@1.0.so|677ad64a50bef7e31738469aa72b94d13444a
 vendor/lib64/libsoc_helper.so|3a7dc01758e6d41ca7fa64d61c3f5d5830debf28
 
 # Camera
-vendor/lib/hw/camera.msm8953.so
 vendor/lib/lib_motsensorlistener.so
 vendor/lib/lib_mot_app6_metadata.so
 vendor/lib/lib_mot_led_calibration.so
@@ -117,14 +116,11 @@ vendor/lib/libjpegehw.so
 vendor/lib/libmotocalibration.so
 vendor/lib/libmot_afd.so
 vendor/lib/libmot_lux_standardization.so
-vendor/lib/libmm-qcamera.so
 vendor/lib/libmmjpeg.so
-vendor/lib/libmmjpeg_interface.so
 vendor/lib/libmmqjpegdma.so
 vendor/lib/libmmqjpeg_codec.so
 vendor/lib/libmot_gpu_mapper.so|9f4d96542314976a8384f686a2a4c49d321999fe
 vendor/lib/liboptizoom.so
-vendor/lib/libqomx_core.so
 vendor/lib/libqomx_jpegdec.so
 vendor/lib/libqomx_jpegenc.so
 vendor/lib/libqomx_jpegenc_pipe.so
@@ -316,7 +312,6 @@ vendor/lib/libmmcamera_gc2375.so
 vendor/lib/libmmcamera_gc2375h_eeprom.so
 vendor/lib/libmmcamera_hdr_gb_lib.so
 vendor/lib/libmmcamera_imglib.so
-vendor/lib/libmmcamera_interface.so
 vendor/lib/libmmcamera_isp_abf40.so
 vendor/lib/libmmcamera_isp_bcc40.so
 vendor/lib/libmmcamera_isp_be_stats44.so
