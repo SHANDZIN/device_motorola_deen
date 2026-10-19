@@ -85,6 +85,8 @@ wifi.active.interface      u:object_r:exported_wifi_prop:s0
 vendor.perf.           u:object_r:vendor_perf_prop:s0
 ro.vendor.perf.        u:object_r:vendor_perf_prop:s0
 vendor.target.init.complete u:object_r:vendor_perf_prop:s0 exact bool
+vendor.debug.enable.lm      u:object_r:vendor_perf_prop:s0 exact bool
+vendor.debug.enable.memperfd u:object_r:vendor_perf_prop:s0 exact bool
 vendor.mm.enable.qcom_parser u:object_r:vendor_video_prop:s0 exact int
 persist.vendor.data.shsusr_load u:object_r:vendor_data_shsusr_prop:s0 exact
 persist.vendor.data.offload_ko_load u:object_r:vendor_data_ko_prop:s0 exact

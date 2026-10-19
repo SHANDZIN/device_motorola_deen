@@ -283,8 +283,12 @@ PRODUCT_PACKAGES += \
     libstagefrighthw
 
 # Perf
+PRODUCT_PACKAGES += \
+    libtflite
+
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/perf/perf-profile0.conf:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perf-profile0.conf
+    $(LOCAL_PATH)/configs/perf/perf-profile0.conf:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perf-profile0.conf \
+    $(LOCAL_PATH)/configs/perf/targetresourceconfigs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/targetresourceconfigs.xml
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -330,7 +334,9 @@ PRODUCT_PACKAGES += \
     android.hardware.power.stats@1.0-service.mock \
     android.hardware.power-service-qti \
     vendor.qti.hardware.perf@2.0.vendor \
-    vendor.qti.hardware.perf@2.1.vendor
+    vendor.qti.hardware.perf@2.1.vendor \
+    vendor.qti.hardware.perf@2.2 \
+    vendor.qti.hardware.perf@2.2.vendor
 
 # Powerhint
 PRODUCT_COPY_FILES += \

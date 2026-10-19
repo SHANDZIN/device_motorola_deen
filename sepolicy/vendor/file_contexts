@@ -53,8 +53,8 @@
 /(vendor|system/vendor)/bin/init\.mmi\.(acdb|laser|usb)\.sh                     u:object_r:qti_init_shell_exec:s0
 /(vendor|system/vendor)/bin/init\.qcom\.power\.sh                               u:object_r:qti_init_shell_exec:s0
 /(vendor|system/vendor)/bin/perfd                                               u:object_r:perfd_exec:s0
-/(vendor|system/vendor)/bin/hw/vendor\.qti\.hardware\.perf@2\.1-service                                 u:object_r:hal_perf_default_exec:s0
-/vendor/lib(64)?/vendor\.qti\.hardware\.perf@2\.1\.so                                                   u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/bin/hw/vendor\.qti\.hardware\.perf@2\.[12]-service                              u:object_r:hal_perf_default_exec:s0
+/vendor/lib(64)?/vendor\.qti\.hardware\.perf@2\.[12]\.so                                                u:object_r:same_process_hal_file:s0
 
 /sys/devices/soc/c900000\.qcom,mdss_mdp/c900000\.qcom,mdss_mdp:qcom,mdss_fb_primary/leds/lcd-backlight(/.*)?                  u:object_r:sysfs_leds:s0
 /sys/devices/soc/leds-atc-20/leds/white(/.*)?        u:object_r:sysfs_leds:s0

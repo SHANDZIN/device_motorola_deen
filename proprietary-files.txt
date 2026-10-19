@@ -691,48 +691,50 @@ vendor/lib64/libpn553_fw.so
 vendor/bin/charge_only_mode|2da6abfce0c78d6a0464889b8753e51e6ac0f5bd
 vendor/bin/hvdcp_opti
 
-# Perf - from LA.UM.8.6.2.r1-08600-89xx.0
+# Perf - from LA.UM.9.6.3.r1-06200-89xx.0
+system/framework/QPerformance.jar|28fd13e26ab6f851e89dd6110fe5555d1926af1c
+system/framework/UxPerformance.jar|8a5351cc4d07fcfccab052b1b5de4a790ed4326c
+system_ext/bin/perfservice|e5256bf08ad5a3fff2661b6d9a5f4ef4557afcab
+system_ext/etc/init/perfservice.rc|7d4732437d2204e06ea09db85f169fef693086e8
+system_ext/etc/perf/wlc_model.tflite|83cf4df067bc14c78f31943f32bcaf6f32419125
+system_ext/etc/seccomp_policy/perfservice.policy|579d2f1b36b98aee30594d2e955552e4dd18ed87
+system_ext/lib64/libqti-iopd-client_system.so|62cfdceeb4d81ad04a3dff96b6f640f23960ac39
+system_ext/lib64/libqti-perfd-client_system.so|24f866fd13785a56200fb15fac96dec45468ca53
+system_ext/lib64/libqti-util_system.so|6f383aa796c9f9f25ef467e7b69160a8cd828e8f
+system_ext/lib64/libqti_performance.so|e0649c8f8d098249fcb764e25f858e1dc99e9c72
+system_ext/lib64/libqti_workloadclassifiermodel.so|a8a48e517ecb6040367ea46ba279a0d7e94eb7ee
+system_ext/lib64/vendor.qti.hardware.iop@2.0.so|7613a7e1e239226e6ec891e46c64c4e15abafbb2
+vendor/bin/hw/vendor.qti.hardware.perf@2.2-service|dbe4099321e4cbb260d4bfa19d94757feca09058
+vendor/etc/init/vendor.qti.hardware.perf@2.2-service.rc|459b4c23550a56ac545f78c6d391f3d7dd9ba45b
+vendor/etc/lm/AdaptLaunchFeature.xml|18bc83ef95738e3035d1a7bb6f05c981b2dc6803
+vendor/lib/libqti-perfd-client.so|2468c03f46fea1f85f48fcbc95cc547c2b84cd6d
+vendor/lib64/libadaptlaunch.so|aa1da37d4ac954e273c310250fa634c7e1ae510f
+vendor/lib64/liblearningmodule.so|7be28031f12407ac0be8c2473813e77018be7a95
+vendor/lib64/libmeters-ns.so|08ede734456721d2b450cb46f17237d9a9b6cf79
+vendor/lib64/libmeters.so|1c8953bc786f8f498e7caaaa538e4db45e263da2
+vendor/lib64/libperfconfig.so|80c3aeb69abba0f49c3e3531ff8906b7891022b4
+vendor/lib64/libperfgluelayer.so|6bf1fc218f7a160593e17f92bc621f6fac0ab625
+vendor/lib64/libperfioctl.so|319354ff7befacdae67a5155dfb69ce10363fc7b
+vendor/lib64/libqti-perfd-client.so|f5dda6eadd01fa44ce00855cf540fba5ce5e9e85
+vendor/lib64/libqti-perfd.so|e1e537cc3dd1b055c375f7c0a51752b6a8e966ac
+vendor/lib64/libqti-util.so|6b7a8a7dea9a8afc0e8988653577e35d22f73608
+
+# Perf compatibility and IOP - from LA.UM.8.6.2.r1-08600-89xx.0
+vendor/lib/vendor.qti.hardware.iop@2.0.so:system_ext/lib/vendor.qti.hardware.iop@2.0.so|4e2930e43b93b97dcf30d19e2c7bca460aa30d7f
+vendor/lib/libqti-util.so:system_ext/lib/libqti-util_system.so|7f1b080e1d5c2e03261b80699232b3153146d215|858b9f77cef11ef1840d94f66ecff658a844f2f2
 system/lib/libqti-at.so:system_ext/lib/libqti-at.so|28ca0798553093652a85acfccf81e5aa70819850
 system/lib/libqti-perfd-client_system.so:system_ext/lib/libqti-perfd-client_system.so|6061ece92e6fac3fb826727d87415f2eeb4fb930
 system/lib/libqti_performance.so:system_ext/lib/libqti_performance.so|e8aa933eddaff2f03e9237d8feb4c39ad513f5be
 system/lib64/libqti-at.so:system_ext/lib64/libqti-at.so|44af3718027bcda96262666e6d7cf15ec72511fc
-system/lib64/libqti-perfd-client_system.so:system_ext/lib64/libqti-perfd-client_system.so|4a7c8b57349c178b0cef6c13e638fddbb7edbee4
-system/lib64/libqti_performance.so:system_ext/lib64/libqti_performance.so|effa5f073fd27495c6ab91769609c9b152dc9141
-vendor/bin/hw/vendor.qti.hardware.perf@2.1-service|2e3be88cad2d9b9aa4edc8e68ad5f4d4e7eeaedc
 vendor/bin/energy-awareness|056792da4f0bcfc34b1f85e3ee67820d8c80627f
 vendor/bin/msm_irqbalance|0e967f5c7eaf8d863a50996459101be47adf96a2
-vendor/etc/init/vendor.qti.hardware.perf@2.1-service.rc|0d7eaa2a99b16738f4e40d7ee7473bb0dd705d2c
-vendor/etc/lm/AdaptLaunchFeature.xml|746b6082014bf2094d8d6a0233a65bee1e2465d4
 vendor/lib/libperfconfig.so|e44d84d1b38e375a6e13422a8fe21c7876fc8068
 vendor/lib/libperfgluelayer.so|39bfe9f4414537084cb6fcc30c1a95c3192583fd
-vendor/lib/libqti-perfd-client.so|59515ed57886d7c37c98c7da6314f21ff6694474
 vendor/lib/libqti-perfd.so|e80a02f21e5a4ee31afcaf1222b34144112a77da
 vendor/lib/libqti-util.so|7f1b080e1d5c2e03261b80699232b3153146d215
 vendor/lib/libqti-utils.so|a3ace1ce64cafed009b26d69e54908decee52bc8
-vendor/lib64/libadaptlaunch.so|cf784401fc827e5195d595a6d855ec89ea8c22bf
-vendor/lib64/libappclassifier.so|d5956c2dc9344ddcca0e78d84c393320c2e0cc97
-vendor/lib64/libgameoptfeature.so|b135489d253f0a8d7884238fe7887eb85b87745d
-vendor/lib64/liblearningmodule.so|a9390d0ef1ec82c97a61035ec686c1d094fdca98
-vendor/lib64/libmeters-ns.so|3580b575782dcacae030ada48dabc3597a614f41
-vendor/lib64/libmeters.so|09f178dee1aa074f12fac5c502a7a6436ce93716
-vendor/lib64/libperfconfig.so|cc082d4be56372ca49e6fcdc040ba05b27ae72bf
-vendor/lib64/libperfgluelayer.so|06f15511aa43ea3ebfff624e425952dcb7577701
-vendor/lib64/libqti-perfd-client.so|660d1d2a58e10616971c807b638f95b139b5a8e0
-vendor/lib64/libqti-perfd.so|003d9c728a25a50535fe7a77c3616b4079761166
-vendor/lib64/libqti-util.so|45a80be449435d277f09cc59e4a315fa86072c41
 vendor/lib64/libqti-utils.so|267d837082fccc851f827b229a1c876c09bac552
-vendor/lib64/libskewknob.so|bdd7b340dd5908ae8161cc1935a05c1b4158d4a2
-
-# Perf (configs) - from deen_sprout QPKS30.54-22-27
-vendor/etc/perf/commonresourceconfigs.xml|d9fc3b49481536d6c7a25eb13f9f1d52d3ee8ff1
-vendor/etc/perf/perfboostsconfig.xml|1c120821b2fe9b3ebf9d00b7bc8c0a374c2918d2
-vendor/etc/perf/perfconfigstore.xml|207ff980c296f4935928dd2f06e085b33bf59755
-vendor/etc/perf/targetconfig.xml|aa20c25397df1455206965737f82d44d44430e45
-vendor/etc/perf/targetresourceconfigs.xml|d9f9815764725df55e748bf4af4829e609dac853|a77229f0a73d4c7d5caa2683b5e1816917ba647f
-
-# Perf (IOP) - from LA.UM.8.6.2.r1-08600-89xx.0
 system/lib/libqti-iopd-client_system.so:system_ext/lib/libqti-iopd-client_system.so|1a36a807a75dde4bcfed713924aca675f5c11558
-system/lib64/libqti-iopd-client_system.so:system_ext/lib64/libqti-iopd-client_system.so|661639804da84141fd783fd9dfc90394de8febf7
 vendor/lib/hw/vendor.qti.hardware.iop@2.0-impl.so|6e42e6b3555e47c730a69fd5522099c5729b272a
 vendor/lib/libqti-iopd-client.so|30c7d57636921ddcec6df17fcb378a4a04eefe42
 vendor/lib/vendor.qti.hardware.iop@1.0.so|5b67d78e1ec2c39c1bfab6387d32801a4a2d0bd6
@@ -741,6 +743,16 @@ vendor/lib64/hw/vendor.qti.hardware.iop@2.0-impl.so|1f087eb93b9ce0f0ee7fdaf6351f
 vendor/lib64/libqti-iopd-client.so|fc9878267908f9843882891f902c4d37fee760dd
 vendor/lib64/vendor.qti.hardware.iop@1.0.so|14d7dc7d928d6bd8758f955f45dd97d4e40e4606
 vendor/lib64/vendor.qti.hardware.iop@2.0.so|3e3fefb8ed943e09fc09c8a6dd6cc7991cb8f2e5
+
+# Perf (configs) - from deen_sprout QPKS30.54-22-27
+vendor/etc/perf/commonresourceconfigs.xml|d9fc3b49481536d6c7a25eb13f9f1d52d3ee8ff1
+vendor/etc/perf/perfboostsconfig.xml|1c120821b2fe9b3ebf9d00b7bc8c0a374c2918d2|7848b441184a0a7cbe39f0f1322cb94e9e8cd12d
+vendor/etc/perf/perfconfigstore.xml|207ff980c296f4935928dd2f06e085b33bf59755
+vendor/etc/perf/targetconfig.xml|aa20c25397df1455206965737f82d44d44430e45|9bc3b4661c76e3c707c67b8ce0d0b455f425e9d5
+
+# Perf (PASR interfaces) - garnet ade07bb99a448a3d077435ecef3760c31bf402c8
+vendor/lib64/vendor.qti.memory.pasrmanager@1.0.so|a6af19caf8a25d1af69d1e840f7e1d0708efc7a6
+vendor/lib64/vendor.qti.memory.pasrmanager@1.1.so|b7d0eb8fa25df5439d97291c7e597b92a5c07fd5
 
 # Peripheral manager
 vendor/lib/libperipheral_client.so

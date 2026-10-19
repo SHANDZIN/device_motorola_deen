@@ -54,8 +54,14 @@ fi
 
 function blob_fixup() {
     case "${1}" in
-        vendor/etc/perf/targetresourceconfigs.xml)
-            sed -i '/MajorValue="0x3".*MinorValue="0x[BD]".*Kernel="4.9"/s/Kernel="4.9"/Kernel="4.19"/' "${2}"
+        system_ext/lib/libqti-util_system.so)
+            "${PATCHELF}" --set-soname libqti-util_system.so "${2}"
+            ;;
+        vendor/etc/perf/targetconfig.xml)
+            sed -i '/Target="msm8953"/,/GovInstanceType=/s/GovInstanceType="1" \/>/GovInstanceType="1" CpufreqGov="1" \/>/' "${2}"
+            ;;
+        vendor/etc/perf/perfboostsconfig.xml)
+            sed -i -E 's/,[[:space:]]*0x40C2C000,[[:space:]]*0x1//; s/,[[:space:]]*0x40C34000,[[:space:]]*0x0//' "${2}"
             ;;
         vendor/etc/init/dpmQmiMgr.rc)
             sed -i '/^[[:space:]]*interface /d' "${2}"
