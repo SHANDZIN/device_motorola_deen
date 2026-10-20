@@ -89,12 +89,12 @@ $(RFS_MSM_MPSS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 
 ALL_DEFAULT_INSTALLED_MODULES += $(RFS_MSM_ADSP_SYMLINKS) $(RFS_MSM_MPSS_SYMLINKS) $(RFS_MSM_SLPI_SYMLINKS)
 
-EGL_SYMLINK := $(TARGET_OUT_VENDOR)/lib/libGLESv2_adreno.so
-$(EGL_SYMLINK): $(LOCAL_INSTALLED_MODULE)
+ADRENO_SYMLINKS := $(foreach libdir,lib lib64,$(addprefix $(TARGET_OUT_VENDOR)/$(libdir)/,libEGL_adreno.so libGLESv2_adreno.so libq3dtools_adreno.so))
+$(ADRENO_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@mkdir -p $(dir $@)
 	$(hide) ln -sf egl/$(notdir $@) $@
 
-ALL_DEFAULT_INSTALLED_MODULES += $(EGL_SYMLINK)
+ALL_DEFAULT_INSTALLED_MODULES += $(ADRENO_SYMLINKS)
 
 WIFI_SYMLINKS := $(TARGET_OUT_VENDOR)/firmware/wlan/prima/
 $(WIFI_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
@@ -119,5 +119,8 @@ $(CNE_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) ln -sf /vendor/lib64/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(CNE_SYMLINKS)
+
+include $(call project-path-for,qcom-audio)/Android.mk
+include $(call project-path-for,qcom-media)/Android.mk
 
 endif

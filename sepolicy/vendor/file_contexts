@@ -26,6 +26,7 @@
 
 # libmcf
 /vendor/lib(64)?/libmcf-qc-fd-offline\.so                        u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib(64)?/vulkan\.[a-z0-9]*\.so            u:object_r:same_process_hal_file:s0
 
 # Persist
 /persist(/.*)?                u:object_r:mnt_vendor_file:s0

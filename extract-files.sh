@@ -75,7 +75,11 @@ function blob_fixup() {
             sed -i "s/ro.product.manufacturer/ro.product.nopefacturer/" "${2}"
             ;;
         # Wrap libgui_vendor into libwui
-        vendor/lib/libmot_gpu_mapper.so | vendor/lib/libmmcamera_vstab_module.so)
+        vendor/lib/libmot_gpu_mapper.so)
+            sed -i "s/libgui/libwui/" "${2}"
+            "${PATCHELF}" --replace-needed libgralloc1.so libmot_gralloc.so "${2}"
+            ;;
+        vendor/lib/libmmcamera_vstab_module.so)
             sed -i "s/libgui/libwui/" "${2}"
             ;;
         # Fix xml version

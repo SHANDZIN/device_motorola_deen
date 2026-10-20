@@ -25,6 +25,19 @@ LOCAL_VENDOR_MODULE := true
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
+LOCAL_SRC_FILES := libmot_gralloc.cpp
+LOCAL_MODULE := libmot_gralloc
+LOCAL_VENDOR_MODULE := true
+LOCAL_MULTILIB := 32
+LOCAL_HEADER_LIBRARIES := display_headers generated_kernel_headers
+LOCAL_SHARED_LIBRARIES := \
+    libgralloccore \
+    liblog \
+    android.hardware.graphics.common@1.2
+LOCAL_CFLAGS := -Wall -Wextra -Werror -DLOG_TAG=\"mot_gralloc\"
+include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
 LOCAL_SHARED_LIBRARIES := libgui_vendor
 LOCAL_MODULE := libwui
 LOCAL_MODULE_TAGS := optional

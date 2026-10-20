@@ -24,7 +24,6 @@ cc_library_shared {
         "hardware/qcom-caf/msm8996/media/mm-core/inc",
         "system/memory/libion/kernel-headers",
         "system/memory/libion/include",
-        "hardware/qcom-caf/msm8996/display/libqservice",
     ],
     local_include_dirs: [
         "stack/mm-camera-interface/inc",
