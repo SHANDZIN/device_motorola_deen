@@ -1,4 +1,4 @@
-/* Copyright (c) 2017-2019 The Linux Foundation. All rights reserved.
+/* Copyright (c) 2017,2020-2021 The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -130,7 +130,7 @@ public:
     void locAPIDisable();
     uint32_t locAPIGnssUpdateConfig(GnssConfig config);
     uint32_t locAPIGnssGetConfig(GnssConfigFlagsMask config);
-    inline LocationControlAPI* getControlAPI() { return mLocationControlAPI; }
+    inline ILocationControlAPI* getControlAPI() { return mLocationControlAPI; }
 
     // callbacks
     void onCtrlResponseCb(LocationError error, uint32_t id);
@@ -191,7 +191,7 @@ public:
 
 private:
     pthread_mutex_t mMutex;
-    LocationControlAPI* mLocationControlAPI;
+    ILocationControlAPI* mLocationControlAPI;
     RequestQueue mRequestQueues[CTRL_REQUEST_MAX];
     bool mEnabled;
     GnssConfig mConfig;
@@ -200,9 +200,11 @@ private:
 class LocationAPIClientBase {
 public:
     LocationAPIClientBase();
-    virtual ~LocationAPIClientBase();
     LocationAPIClientBase(const LocationAPIClientBase&) = delete;
     LocationAPIClientBase& operator=(const LocationAPIClientBase&) = delete;
+
+    void destroy();
+    void onLocationApiDestroyCompleteCb();
 
     void locAPISetCallbacks(LocationCallbacks& locationCallbacks);
     void removeSession(uint32_t session);
@@ -242,7 +244,8 @@ public:
     inline virtual void onGnssDataCb(GnssDataNotification /*gnssDataNotification*/) {}
     inline virtual void onGnssMeasurementsCb(
             GnssMeasurementsNotification /*gnssMeasurementsNotification*/) {}
-
+    inline virtual void onGnssNHzMeasurementsCb(
+            GnssMeasurementsNotification /*gnssMeasurementsNotification*/) {}
     inline virtual void onTrackingCb(Location /*location*/) {}
     inline virtual void onGnssSvCb(GnssSvNotification /*gnssSvNotification*/) {}
     inline virtual void onStartTrackingCb(LocationError /*error*/) {}
@@ -282,6 +285,9 @@ public:
     inline virtual void onGnssNiResponseCb(LocationError /*error*/) {}
 
     inline virtual void onLocationSystemInfoCb(LocationSystemInfo /*locationSystemInfo*/) {}
+
+protected:
+    virtual ~LocationAPIClientBase();
 
 private:
     // private inner classes
@@ -575,7 +581,7 @@ private:
     geofenceBreachCallback mGeofenceBreachCallback;
     batchingStatusCallback mBatchingStatusCallback;
 
-    LocationAPI* mLocationAPI;
+    ILocationAPI* mLocationAPI;
 
     RequestQueue mRequestQueues[REQUEST_MAX];
     BiDict<GeofenceBreachTypeMask> mGeofenceBiDict;

@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 The Linux Foundation. All rights reserved.
+/* Copyright (c) 2017, 2020 The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -30,7 +30,11 @@
 #ifndef __IFRAMEWORKACTIONREQ_H__
 #define __IFRAMEWORKACTIONREQ_H__
 
+#include <string>
 #include  <DataItemId.h>
+#include <gps_extended.h>
+
+using namespace std;
 
 namespace loc_core
 {
@@ -77,7 +81,7 @@ public:
      *
      * @param None
      */
-    virtual bool connectBackhaul() = 0;
+    virtual bool connectBackhaul(const BackhaulContext& ctx) = 0;
 
     /**
      * @brief Disconnects the WWANbackhaul
@@ -85,7 +89,7 @@ public:
      *
      * @param None
      */
-    virtual bool disconnectBackhaul() = 0;
+    virtual bool disconnectBackhaul(const BackhaulContext& ctx) = 0;
 #endif
 
     /**

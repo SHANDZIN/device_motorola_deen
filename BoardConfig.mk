@@ -124,7 +124,9 @@ TARGET_FS_CONFIG_GEN := \
     $(DEVICE_PATH)/configs/filesystem/mot_aids.fs
 
 # GPS
-LOC_HIDL_VERSION := 3.0
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
+TARGET_USES_HARDWARE_QCOM_GPS := false
+LOC_HIDL_VERSION := 4.1
 
 # HIDL
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/vintf/manifest.xml

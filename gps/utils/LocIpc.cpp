@@ -1,4 +1,4 @@
-/* Copyright (c) 2017-2018 The Linux Foundation. All rights reserved.
+/* Copyright (c) 2017-2021 The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -101,7 +101,7 @@ ssize_t Sock::recvfrom(const LocIpcRecver& recver, const shared_ptr<ILocIpcListe
     if (nBytes > 0) {
         if (strncmp(msg.data(), MSG_ABORT, sizeof(MSG_ABORT)) == 0) {
             LOC_LOGi("recvd abort msg.data %s", msg.data());
-            nBytes = 0;
+            nBytes = -100;
         } else if (strncmp(msg.data(), LOC_IPC_HEAD, sizeof(LOC_IPC_HEAD) - 1)) {
             // short message
             msg.resize(nBytes);
@@ -139,8 +139,20 @@ protected:
     }
 public:
     inline LocIpcLocalSender(const char* name) : LocIpcSender(),
-            mSock(make_shared<Sock>((nullptr == name) ? -1 : (::socket(AF_UNIX, SOCK_DGRAM, 0)))),
+            mSock(nullptr),
             mAddr({.sun_family = AF_UNIX, {}}) {
+
+        int fd = -1;
+        if (nullptr != name) {
+            fd = ::socket(AF_UNIX, SOCK_DGRAM, 0);
+            if (fd >= 0) {
+                timeval timeout;
+                timeout.tv_sec = 2;
+                timeout.tv_usec = 0;
+                setsockopt(fd, SOL_SOCKET, SO_SNDTIMEO, &timeout, sizeof(timeout));
+            }
+        }
+        mSock.reset(new Sock(fd));
         if (mSock != nullptr && mSock->isValid()) {
             snprintf(mAddr.sun_path, sizeof(mAddr.sun_path), "%s", name);
         }
@@ -216,11 +228,19 @@ protected:
     mutable bool mFirstTime;
 
     virtual ssize_t send(const uint8_t data[], uint32_t length, int32_t /* msgId */) const {
+        int connStatus = 0;
         if (mFirstTime) {
-            mFirstTime = false;
-            ::connect(mSock->mSid, (const struct sockaddr*)&mAddr, sizeof(mAddr));
+            connStatus = ::connect(mSock->mSid, (const struct sockaddr*)&mAddr, sizeof(mAddr));
+            if (0 == connStatus) {
+                mFirstTime = false;
+            }
         }
-        return mSock->send(data, length, 0, (struct sockaddr*)&mAddr, sizeof(mAddr));
+
+        if (0 == connStatus) {
+            return mSock->send(data, length, 0, (struct sockaddr*)&mAddr, sizeof(mAddr));
+        }
+
+        return 0;
     }
 
 public:
@@ -247,9 +267,7 @@ public:
     inline virtual const char* getName() const override { return mName.data(); };
     inline virtual void abort() const override {
         if (isSendable()) {
-            sockaddr_in loopBackAddr = {.sin_family = AF_INET, .sin_port = htons(mPort),
-                    .sin_addr = {htonl(INADDR_LOOPBACK)}};
-            mSock->sendAbort(0, (struct sockaddr*)&loopBackAddr, sizeof(loopBackAddr));
+            mSock->sendAbort(0, (struct sockaddr*)&mAddr, sizeof(mAddr));
         }
     }
     inline virtual unique_ptr<LocIpcSender> getLastSender() const override {
@@ -269,7 +287,14 @@ protected:
                 mConnFd = -1;
             }
         }
-        return mSock->recv(*this, mDataCb, 0, (struct sockaddr*)&mAddr, &size, mConnFd);
+        ssize_t nBytes = mSock->recv(*this, mDataCb, 0, (struct sockaddr*)&mAddr, &size, mConnFd);
+        if (0 == nBytes) {
+            // tcp connection closed, accept new connection for next recv
+            // But do not exit the receiver thread by returning 0 bytes.
+            mConnFd = -1;
+            nBytes = 100;
+        }
+        return nBytes;
     }
 public:
     inline LocIpcInetTcpRecver(const shared_ptr<ILocIpcListener>& listener, const char* name,
@@ -301,7 +326,7 @@ public:
             mAbortCalled(false),
             mLocIpc(locIpc),
             mIpcRecver(move(ipcRecver)) {}
-    inline bool run() override {
+    inline virtual bool run() override {
         if (mIpcRecver != nullptr) {
             mLocIpc.startBlockingListening(*(mIpcRecver.get()));
             if (!mAbortCalled) {
@@ -311,7 +336,7 @@ public:
         // return false so the calling thread exits while loop
         return false;
     }
-    inline void abort() {
+    inline virtual void interrupt() override {
         mAbortCalled = true;
         if (mIpcRecver != nullptr) {
             mIpcRecver->abort();
@@ -321,10 +346,8 @@ public:
 
 bool LocIpc::startNonBlockingListening(unique_ptr<LocIpcRecver>& ipcRecver) {
     if (ipcRecver != nullptr && ipcRecver->isRecvable()) {
-        std::string threadName("LocIpc-");
-        threadName.append(ipcRecver->getName());
-        mRunnable = new LocIpcRunnable(*this, ipcRecver);
-        return mThread.start(threadName.c_str(), mRunnable);
+        std::string threadName = generateThreadName(ipcRecver->getName());
+        return mThread.start(threadName.c_str(), make_shared<LocIpcRunnable>(*this, ipcRecver));
     } else {
         LOC_LOGe("ipcRecver is null OR ipcRecver->recvable() is fasle");
         return false;
@@ -344,10 +367,7 @@ bool LocIpc::startBlockingListening(LocIpcRecver& ipcRecver) {
 }
 
 void LocIpc::stopNonBlockingListening() {
-    if (mRunnable) {
-        mRunnable->abort();
-        mRunnable = nullptr;
-    }
+    mThread.stop();
 }
 
 void LocIpc::stopBlockingListening(LocIpcRecver& ipcRecver) {
@@ -358,6 +378,15 @@ void LocIpc::stopBlockingListening(LocIpcRecver& ipcRecver) {
 
 bool LocIpc::send(LocIpcSender& sender, const uint8_t data[], uint32_t length, int32_t msgId) {
     return sender.sendData(data, length, msgId);
+}
+
+std::string LocIpc::generateThreadName(const std::string& recverName) {
+    std::string threadName("Ipc-");
+    int recverNameLen = recverName.length();
+    // Total thread name length is 16 letters.
+    // Concatenate with up to 11 chars starting from the last char of the ipc name.
+    threadName.append(recverName.substr(recverNameLen <= 11 ? 0 : (recverNameLen - 11)));
+    return threadName;
 }
 
 shared_ptr<LocIpcSender> LocIpc::getLocIpcLocalSender(const char* localSockName) {
@@ -376,15 +405,17 @@ shared_ptr<LocIpcSender> LocIpc::getLocIpcQrtrSender(int service, int instance) 
     return (nullptr == creator) ? nullptr : creator(service, instance);
 }
 unique_ptr<LocIpcRecver> LocIpc::getLocIpcQrtrRecver(const shared_ptr<ILocIpcListener>& listener,
-                                                     int service, int instance) {
-    typedef unique_ptr<LocIpcRecver> (*creator_t)(const shared_ptr<ILocIpcListener>&, int, int);
+                                                     int service, int instance,
+                                                     const shared_ptr<LocIpcQrtrWatcher>& watcher) {
+    typedef unique_ptr<LocIpcRecver> (*creator_t)(const shared_ptr<ILocIpcListener>&, int, int,
+                                                  const shared_ptr<LocIpcQrtrWatcher>& watcher);
     static creator_t creator = (creator_t)dlGetSymFromLib(sLibQrtrHandle, sLibQrtrName,
 #ifdef USE_GLIB
-            "_ZN8loc_util22createLocIpcQrtrRecverERKSt10shared_ptrINS_15ILocIpcListenerEEii");
+            "_ZN8loc_util22createLocIpcQrtrRecverERKSt10shared_ptrINS_15ILocIpcListenerEEiiRKS0_INS_17LocIpcQrtrWatcherEE");
 #else
-            "_ZN8loc_util22createLocIpcQrtrRecverERKNSt3__110shared_ptrINS_15ILocIpcListenerEEEii");
+            "_ZN8loc_util22createLocIpcQrtrRecverERKNSt3__110shared_ptrINS_15ILocIpcListenerEEEiiRKNS1_INS_17LocIpcQrtrWatcherEEE");
 #endif
-    return (nullptr == creator) ? nullptr : creator(listener, service, instance);
+    return (nullptr == creator) ? nullptr : creator(listener, service, instance, watcher);
 }
 shared_ptr<LocIpcSender> LocIpc::getLocIpcInetTcpSender(const char* serverName, int32_t port) {
     return make_shared<LocIpcInetTcpSender>(serverName, port);
@@ -405,7 +436,13 @@ pair<shared_ptr<LocIpcSender>, unique_ptr<LocIpcRecver>>
     typedef pair<shared_ptr<LocIpcSender>, unique_ptr<LocIpcRecver>> (*creator_t)(const shared_ptr<ILocIpcListener>&, int);
     static void* sLibEmuHandle = nullptr;
     static creator_t creator = (creator_t)dlGetSymFromLib(sLibEmuHandle, "libloc_emu.so",
-            "_ZN13QmiLocService41createLocIpcQmiLocServiceSenderRecverPairERKNSt3__110shared_ptrIN8loc_util15ILocIpcListenerEEEi");
+#ifdef USE_GLIB
+            "_ZN13QmiLocService41createLocIpcQmiLocServiceSenderRecverPair"\
+            "ERKSt10shared_ptrIN8loc_util15ILocIpcListenerEEi");
+#else
+            "_ZN13QmiLocService41createLocIpcQmiLocServiceSenderRecverPair"\
+            "ERKNSt3__110shared_ptrIN8loc_util15ILocIpcListenerEEEi");
+#endif
     return (nullptr == creator) ?
             make_pair<shared_ptr<LocIpcSender>, unique_ptr<LocIpcRecver>>(nullptr, nullptr) :
             creator(listener, instance);

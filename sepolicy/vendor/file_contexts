@@ -1,3 +1,5 @@
+/(vendor|system/vendor)/bin/edgnss-daemon    u:object_r:location_exec:s0
+
 # Dev block nodes for eMMC
 /dev/block/platform/soc/7824900\.sdhci/by-name/persist2          u:object_r:persist_block_device:s0
 # EMMC A/B partitions
