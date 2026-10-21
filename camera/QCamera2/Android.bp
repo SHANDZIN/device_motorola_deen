@@ -20,8 +20,8 @@ cc_library_shared {
     include_dirs: [
         "device/motorola/deen/camera/mm-image-codec/qexif",
         "device/motorola/deen/camera/mm-image-codec/qomx_core",
-        "hardware/qcom-caf/msm8996/media/libstagefrighthw",
-        "hardware/qcom-caf/msm8996/media/mm-core/inc",
+        "hardware/qcom-caf/msm8953/media/libstagefrighthw",
+        "hardware/qcom-caf/msm8953/media/mm-core/inc",
         "system/memory/libion/kernel-headers",
         "system/memory/libion/include",
     ],
