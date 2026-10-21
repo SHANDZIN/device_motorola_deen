@@ -120,6 +120,4 @@ $(CNE_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 
 ALL_DEFAULT_INSTALLED_MODULES += $(CNE_SYMLINKS)
 
-include $(call project-path-for,qcom-audio)/Android.mk
-
 endif

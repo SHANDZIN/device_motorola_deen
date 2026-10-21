@@ -13,22 +13,22 @@ vendor/lib64/libfastcvopt.so
 system/lib64/libaptX_encoder.so
 system/lib64/libaptXHD_encoder.so
 
-# Audio
-vendor/lib/libacdb-fts.so
-vendor/lib/libacdbloader.so
-vendor/lib/libacdbrtac.so
-vendor/lib/libadiertac.so
-vendor/lib/libaudcal.so
+# Audio - from LA.UM.9.6.3.r1-06200-89xx.0 (4.19)
+vendor/lib/libacdb-fts.so|4328ced07fb07422077e5d6275ee340529a8a837
+vendor/lib/libacdbloader.so|5d9f59e90c77779da4b01b209e2516728d3fa935
+vendor/lib/libacdbrtac.so|f226ec192c2687bebec1baae6ddd611cb262a721
+vendor/lib/libadiertac.so|d861edae8c61382bb03d46558031d4907e6acdf4
+vendor/lib/libaudcal.so|6526ef5dbdcc818c4a53bd47613c6ae5dc027364
 vendor/lib/libaudioalsa.so
-vendor/lib/libaudioparsers.so
-vendor/lib/libqtigef.so
+vendor/lib/libaudioparsers.so|66fb9b47f6467998935252f7e75592b6f3886c01
+vendor/lib/libqtigef.so|ecad6bd796df0b4cd890e8703ac8e3ff36927747
 vendor/lib64/libacdb-fts.so
 vendor/lib64/libacdbloader.so
 vendor/lib64/libacdbrtac.so
 vendor/lib64/libadiertac.so
 vendor/lib64/libaudcal.so
 vendor/lib64/libaudioalsa.so
-vendor/lib64/libaudioparsers.so
+vendor/lib64/libaudioparsers.so|18fb7b77a0b60a0d8c1ffb8cd19bcf9571bbe13f
 vendor/lib64/libqtigef.so
 
 # Audio-ACDB
