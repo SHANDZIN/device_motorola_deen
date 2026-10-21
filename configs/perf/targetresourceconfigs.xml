@@ -70,7 +70,8 @@ as anyway perflock calls of these resources would fail. -->
 
         <Config MajorValue="0x9" MinorValue="0x7" Supported="yes" /> <!-- cpu.notify_on_migrate -->
 
-        <Config MajorValue="0xB" MinorValue="0x2" Supported="no" /> <!-- input_boost_freq -->
+        <Config MajorValue="0xB" MinorValue="0x2" Target="msm8953" Kernel="4.19" Supported="yes" Node="/sys/devices/system/cpu/cpu_boost/input_boost_freq" /> <!-- input_boost_freq -->
+        <Config MajorValue="0xB" MinorValue="0x2" Target="msm8953" Kernel="4.19" Supported="yes" Node="/sys/devices/system/cpu/cpu_boost/sched_boost_on_input" /> <!-- input_boost_freq -->
 
         <!-- All the minors of LLCBW_HWMON MAJOR are not supported -->
         <Config MajorValue="0xC" MinorValue="0x0" Supported="no" />

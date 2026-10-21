@@ -106,7 +106,13 @@ service qcamerasvr /system/vendor/bin/mm-qcamera-daemon
 on init
     write /dev/stune/foreground/schedtune.sched_boost_no_override 1
     write /dev/stune/top-app/schedtune.sched_boost_no_override 1
+    write /dev/stune/foreground/schedtune.boost 20
+    write /dev/stune/foreground/schedtune.prefer_idle 1
     write /dev/stune/schedtune.colocate 0
+
+on boot
+    write /sys/devices/system/cpu/cpu_boost/input_boost_freq "0:2016000 1:2016000 2:2016000 3:2016000 4:2016000 5:2016000 6:2016000 7:2016000"
+    write /sys/devices/system/cpu/cpu_boost/sched_boost_on_input 1
     write /dev/stune/background/schedtune.colocate 0
     write /dev/stune/foreground/schedtune.colocate 0
     write /dev/stune/top-app/schedtune.colocate 1
